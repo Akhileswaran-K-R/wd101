@@ -20,8 +20,8 @@ function validate(dob) {
 
   if (
     (yearDiff > 19 && yearDiff < 54) ||
-    (yearDiff === 19 && monthDiff >= 0 && dayDiff >= 0) ||
-    (yearDiff === 54 && monthDiff >= 0 && dayDiff >= 0)
+    (yearDiff === 19 && (monthDiff > 0 || (monthDiff == 0 && dayDiff >= 0))) ||
+    (yearDiff === 54 && (monthDiff > 0 || (monthDiff == 0 && dayDiff >= 0)))
   ) {
     dob.setCustomValidity("");
   } else {
