@@ -3,11 +3,21 @@ const submit = document.getElementById("submit");
 submit.addEventListener("click", () => validate(dob));
 
 function validate(dob) {
-  const currentYear = new Date().getFullYear();
-  const dobYear = new Date(dob.value).getFullYear();
-  const age = currentYear - dobYear;
+  const currentDate = new Date();
+  const currentYear = currentDate.getFullYear();
+  const currentMonth = currentDate.getMonth();
+  const currentDay = currentDate.getDate();
 
-  if (age > 18 && age < 55) {
+  const dobValue = new Date(dob.value);
+  const dobDay = dobValue.getDate();
+  const dobMonth = dobValue.getMonth();
+  const dobYear = dobValue.getFullYear();
+
+  const yearDiff = currentYear - dobYear;
+  const monthDiff = currentMonth - dobMonth;
+  const dayDiff = currentDay - dobDay;
+
+  if (yearDiff > 18 && yearDiff < 55 && monthDiff >= 0 && dayDiff >= 0) {
     dob.setCustomValidity("");
   } else {
     dob.setCustomValidity("Age should be between 18 and 55");
