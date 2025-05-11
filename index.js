@@ -1,32 +1,25 @@
-const dob = document.getElementById("dob");
-const submit = document.getElementById("submit");
-submit.addEventListener("click", () => validate(dob));
+const dobField = document.getElementById("dob");
 
-function validate(dob) {
+function isAgeValid(dobField) {
   const currentDate = new Date();
-  const currentYear = currentDate.getFullYear();
-  const currentMonth = currentDate.getMonth();
-  const currentDay = currentDate.getDate();
-  console.log(currentDay);
+  const dobValue = new Date(dobField.value);
 
-  const dobValue = new Date(dob.value);
-  const dobDay = dobValue.getDate();
-  const dobMonth = dobValue.getMonth();
-  const dobYear = dobValue.getFullYear();
-  console.log(dobDay);
-  const yearDiff = currentYear - dobYear;
-  const monthDiff = currentMonth - dobMonth;
-  const dayDiff = currentDay - dobDay;
+  const age = currentDate.getFullYear() - dobValue.getFullYear();
+  const m = currentDate.getMonth() - dobValue.getMonth();
+  const d = currentDate.getDate() - dobValue.getDate();
 
-  if (
-    (yearDiff > 19 && yearDiff < 54) ||
-    (yearDiff === 19 && (monthDiff > 0 || (monthDiff == 0 && dayDiff >= 0))) ||
-    (yearDiff === 54 && (monthDiff > 0 || (monthDiff == 0 && dayDiff >= 0)))
-  ) {
-    dob.setCustomValidity("");
+  const isOldEnough =
+    age > 18 || (age === 18 && (m > 0 || (m === 0 && d >= 0)));
+  const isYoungEnough =
+    age < 55 || (age === 55 && (m < 0 || (m === 0 && d <= 0)));
+
+  if (isOldEnough && isYoungEnough) {
+    dobField.setCustomValidity("");
+    return true;
   } else {
-    dob.setCustomValidity("Age should be between 18 and 55");
-    dob.reportValidity();
+    dobField.setCustomValidity("Age should be between 18 and 55");
+    dobField.reportValidity();
+    return false;
   }
 }
 
@@ -75,6 +68,9 @@ const displayEntries = () => {
 
 const saveUserForm = (event) => {
   event.preventDefault();
+
+  if (!isAgeValid(dobField)) return;
+
   const name = document.getElementById("name").value;
   const email = document.getElementById("email").value;
   const password = document.getElementById("password").value;
