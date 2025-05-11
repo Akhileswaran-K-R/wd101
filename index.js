@@ -1,5 +1,3 @@
-const dobField = document.getElementById("dob");
-
 function isAgeValid(dobField) {
   const dob = new Date(dobField.value);
   const today = new Date();
@@ -60,7 +58,7 @@ const displayEntries = () => {
 
 const saveUserForm = (event) => {
   event.preventDefault();
-
+  const dobField = document.getElementById("dob");
   if (!isAgeValid(dobField)) return;
 
   const name = document.getElementById("name").value;
