@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Registration Form</title>
+    <style>
+      input#name:invalid:focus{
+        border: 1px solid red;
+      }
+
+      input#email:invalid:focus{
+        border: 1px solid red;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="grid grid-cols-6">
+      <div class="col-start-3 col-span-2 border mt-5 p-6">
+        <h2 class="py-4 text-xl font-semibold">Registration Form</h2>
+
+        <form id="user-form">
+          <div class="py-3">
+            <label for="name">Name</label>
+            <input id="name" type="text" name="name" class="border border-gray-300 text-gray-900 rounded p-2 w-full focus:outline-none" required />
+          </div>
+
+          <div class="py-3">
+            <label for="email">Email</label>
+            <input id="email" type="email" name="email" class="border border-gray-300 text-gray-900 rounded p-2 w-full focus:outline-none" required />
+          </div>
+
+          <div class="py-3">
+            <label for="password">Password</label>
+            <input id="password" type="password" name="password" class="border border-gray-300 text-gray-900 rounded p-2 w-full" required />
+          </div>
+
+          <div class="py-3">
+            <label for="dob">Date of Birth</label>
+            <input id="dob" type="date" name="dob" class="border border-gray-300 text-gray-900 rounded p-2 w-full" required />
+          </div>
+
+          <div class="py-3 flex items-center gap-2">
+            <input id="acceptTerms" type="checkbox" name="acceptTerms" required />
+            <label for="acceptTerms">Accept Terms & Conditions</label>
+          </div>
+
+          <div class="py-3">
+            <button type="submit" id="submit" class="text-white bg-green-600 hover:bg-green-800 font-medium rounded px-5 py-2">Submit</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <div class="relative bg-white px-6 mt-5 pt-10 pb-8 shadow-xl ring-1 ring-gray-900/5 sm:mx-auto sm:rounded-lg sm:px-10">
+      <div class="mx-auto">
+        <h2 class="text-3xl text-center font-bold leading-tight">Entries</h2>
+        <div class="divide-y divide-gray-300/50" id="user-entries"></div>
+      </div>
+    </div>
+  </body>
+
+  <script src="index.js"></script>
+</html>
