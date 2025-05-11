@@ -1,23 +1,15 @@
 const dobField = document.getElementById("dob");
 
 function isAgeValid(dobField) {
-  const currentDate = new Date();
-  const dobValue = new Date(dobField.value);
+  const dob = new Date(dobField.value);
+  const today = new Date();
+  const age = (today - dob) / (1000 * 60 * 60 * 24 * 365.25);
 
-  const age = currentDate.getFullYear() - dobValue.getFullYear();
-  const m = currentDate.getMonth() - dobValue.getMonth();
-  const d = currentDate.getDate() - dobValue.getDate();
-
-  const isOldEnough =
-    age > 18 || (age === 18 && (m > 0 || (m === 0 && d >= 0)));
-  const isYoungEnough =
-    age < 55 || (age === 55 && (m < 0 || (m === 0 && d <= 0)));
-
-  if (isOldEnough && isYoungEnough) {
+  if (age >= 18 && age <= 55) {
     dobField.setCustomValidity("");
     return true;
   } else {
-    dobField.setCustomValidity("Age should be between 18 and 55");
+    dobField.setCustomValidity("Age must be between 18 and 55.");
     dobField.reportValidity();
     return false;
   }
