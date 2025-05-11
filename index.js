@@ -1,7 +1,7 @@
 function isAgeValid(dobField) {
-  const dob = new Date(dobField.value);
-  const today = new Date();
-  const age = (today - dob) / (1000 * 60 * 60 * 24 * 365.25);
+  const dobYear = new Date(dobField.value).getFullYear();
+  const currentYear = new Date().getFullYear();
+  const age = currentYear - dobYear;
 
   if (age >= 18 && age <= 55) {
     dobField.setCustomValidity("");
