@@ -1,15 +1,17 @@
-function isAgeValid(dobField) {
-  const dobYear = new Date(dobField.value).getFullYear();
+const dob = document.getElementById("dob");
+const submit = document.getElementById("submit");
+submit.addEventListener("click", () => validate(dob));
+
+function validate(dob) {
   const currentYear = new Date().getFullYear();
+  const dobYear = new Date(dob.value).getFullYear();
   const age = currentYear - dobYear;
 
   if (age >= 18 && age <= 55) {
-    dobField.setCustomValidity("");
-    return true;
+    dob.setCustomValidity("");
   } else {
-    dobField.setCustomValidity("Age must be between 18 and 55.");
-    dobField.reportValidity();
-    return false;
+    dob.setCustomValidity("Age should be between 18 and 55");
+    dob.reportValidity();
   }
 }
 
@@ -58,9 +60,6 @@ const displayEntries = () => {
 
 const saveUserForm = (event) => {
   event.preventDefault();
-  const dobField = document.getElementById("dob");
-  if (!isAgeValid(dobField)) return;
-
   const name = document.getElementById("name").value;
   const email = document.getElementById("email").value;
   const password = document.getElementById("password").value;
